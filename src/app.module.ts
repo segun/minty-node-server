@@ -3,8 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
+import { BannersController } from './controllers/banners.controllers';
 import { AuthGuard } from './guards/roles.guard';
-import { Sample } from './models/sample.model.';
+import { Banners } from './models/banners.model';
+import { BannersService } from './services/banners.service';
 
 @Module({
   imports: [
@@ -16,16 +18,17 @@ import { Sample } from './models/sample.model.';
         }),
     }),
     TypeOrmModule.forFeature([
-      Sample
+      Banners
       // put all models that should be managed by TypeORM here
     ]),
   ],
-  controllers: [], // controllers
+  controllers: [BannersController], // controllers
   providers: [
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    },    
+    },
+    BannersService,
   ], // services
 })
 export class AppModule {}

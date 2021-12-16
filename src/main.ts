@@ -16,10 +16,10 @@ async function bootstrap() {
   app.useGlobalFilters(new ExceptionsFilter());
 
   const options = new DocumentBuilder()
-    .setTitle('Harmony API')
-    .setDescription('API endpoints for Harmony NFT Platform')
+    .setTitle('Minty Server API')
+    .setDescription('API endpoints for Minty NFT Platform')
     .setVersion('1.0.0')
-    .addTag('yasuke')
+    .addTag('minty-drops')
     // this is for authorization
     .addApiKey(
       {
