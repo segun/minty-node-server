@@ -12,10 +12,17 @@ export class PartnersController {
         
     }
 
-    @Post('/check_banned_status')
+    @Post('/check_nft_banned_status')
     async getNFT(@Body(ValidationPipe) getBannedNFTDto: GetBannedNFTDTO): Promise<Response> {
         return ResponseUtils.getSuccessResponse(
             await this.partnerService.getNftBannedStatus(getBannedNFTDto)
+        );
+    }
+
+    @Post('/get_nft_details')
+    async getNftDetails(@Body(ValidationPipe) getBannedNFTDto: GetBannedNFTDTO): Promise<Response> {
+        return ResponseUtils.getSuccessResponse(
+            await this.partnerService.getNftDetails(getBannedNFTDto)
         );
     }
 }
