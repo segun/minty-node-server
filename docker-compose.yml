@@ -7,10 +7,12 @@ services:
         build:
             context: .
             dockerfile: ./Dockerfile
+        environment:
+          - PORT=3333
         command: npm run start:debug
         ports:
-            - 3000:3000
-            - 9300:9300
+            - '3333:3333'
+            - '9229:9229'
         networks:
             - minty-api
         volumes:
