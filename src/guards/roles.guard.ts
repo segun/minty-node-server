@@ -17,7 +17,8 @@ export class AuthGuard implements CanActivate {
     }
     if(authHeader === undefined) {
       authHeader = context.switchToHttp().getRequest().headers['api-key'];
-    }    
+    }
+        
     if (!roles) {
       return true;
     } else {
