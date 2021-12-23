@@ -6,7 +6,9 @@ import { getConnectionOptions } from 'typeorm';
 import { BannersController } from './controllers/banners.controllers';
 import { AuthGuard } from './guards/roles.guard';
 import { Banners } from './models/banners.model';
+import { PartnersModule } from './partners/partners.module';
 import { BannersService } from './services/banners.service';
+import { PartnerAuthModule } from './shared/modules/partner.auth.module';
 
 @Module({
   imports: [
@@ -16,11 +18,13 @@ import { BannersService } from './services/banners.service';
         Object.assign(await getConnectionOptions(), {
           autoLoadEntities: true,
         }),
-    }),
+      }),
+    PartnerAuthModule,
     TypeOrmModule.forFeature([
       Banners
       // put all models that should be managed by TypeORM here
     ]),
+    PartnersModule
   ],
   controllers: [BannersController], // controllers
   providers: [

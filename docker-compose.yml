@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+    dev:
+        container_name: minty-node-server
+        image: minty-dev-server:1.0.0
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        environment:
+          - PORT=3333
+        command: npm run start:debug
+        ports:
+            - '3333:3333'
+            - '9229:9229'
+        networks:
+            - minty-api
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+networks:
+    minty-api:
